@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Smart Calculator </title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="calculator">
+
+<h2>Smart Calculator</h2>
+
+<input type="text" id="display" placeholder="0">
+
+<!-- Scientific Mode Toggle -->
+<button class="sci-toggle" onclick="toggleScientific()">Scientific Mode</button>
+
+
+<div class="buttons">
+
+<button onclick="clearDisplay()">C</button>
+<button onclick="deleteLast()">DEL</button>
+<button onclick="append('%')">%</button>
+<button onclick="append('/')">÷</button>
+
+<button onclick="append('7')">7</button>
+<button onclick="append('8')">8</button>
+<button onclick="append('9')">9</button>
+<button onclick="append('*')">×</button>
+
+<button onclick="append('4')">4</button>
+<button onclick="append('5')">5</button>
+<button onclick="append('6')">6</button>
+<button onclick="append('-')">−</button>
+
+<button onclick="append('1')">1</button>
+<button onclick="append('2')">2</button>
+<button onclick="append('3')">3</button>
+<button onclick="append('+')">+</button>
+
+<button onclick="append('0')">0</button>
+<button onclick="append('.')">.</button>
+<button class="equal" onclick="calculate()">=</button>
+
+
+</div>
+
+<!-- Scientific Buttons -->
+<div id="scientific" class="scientific">
+
+<button onclick="sin()">sin</button>
+<button onclick="cos()">cos</button>
+<button onclick="tan()">tan</button>
+
+<button onclick="square()">x²</button>
+<button onclick="sqrt()">√</button>
+<button onclick="log()">log</button>
+
+</div>
+
+<div class="extra">
+
+<button onclick="toggleTheme()">🌙</button>
+
+</div>
+
+<h3>History</h3>
+
+<button class="clear-history" onclick="clearHistory()">Clear History</button>
+
+<ul id="history"></ul>
+
+</div>
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
