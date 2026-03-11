@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Smart Calculator Pro
 
 A modern **Scientific Calculator Web App** built using **HTML, CSS, and JavaScript**.
@@ -66,3 +67,7 @@ This project helped me learn:
 **Shuvankar Sahoo**
 
 ---
+=======
+# Smart-Calculator
+A modern scientific calculator web app built with HTML, CSS and JavaScript.
+>>>>>>> a7115c032c5e34f8253d40105aa03988ae37c647
