@@ -1,6 +1,6 @@
 let display = document.getElementById("display");
 let history = document.getElementById("history");
-
+let memory = 0;
 function append(value){
 
 display.value += value;
@@ -73,14 +73,51 @@ document.body.classList.toggle("light");
 
 document.addEventListener("keydown", function(event){
 
-if(event.key === "Enter"){
+let key = event.key;
+let display = document.getElementById("display");
+
+/* Numbers */
+if(!isNaN(key)){
+append(key);
+}
+
+/* Operators */
+if(["+","-","*","/","%","."].includes(key)){
+append(key);
+}
+
+/* Enter or = */
+if(key === "Enter" || key === "="){
 event.preventDefault();
 calculate();
 }
 
-if(event.key === "Escape"){
+/* Backspace */
+if(key === "Backspace"){
+deleteLast();
+}
+
+/* Escape clears display */
+if(key === "Escape"){
 clearDisplay();
 }
+
+/* Button highlight animation */
+
+let buttons = document.querySelectorAll("button");
+
+buttons.forEach(btn => {
+
+if(btn.innerText === key){
+btn.classList.add("active");
+
+setTimeout(()=>{
+btn.classList.remove("active");
+},150);
+
+}
+
+});
 
 });
 function clearHistory(){
@@ -157,5 +194,76 @@ let value = parseFloat(display.value);
 if(!isNaN(value)){
 display.value = Math.log(value);
 }
+
+}
+function memoryClear(){
+memory = 0;
+}
+
+function memoryRecall(){
+display.value = memory;
+}
+
+function memoryAdd(){
+memory += Number(display.value);
+}
+
+function memorySubtract(){
+memory -= Number(display.value);
+}
+function copyResult(){
+
+navigator.clipboard.writeText(display.value);
+
+alert("Result copied!");
+
+}
+function addHistory(value){
+
+let history = JSON.parse(localStorage.getItem("history")) || [];
+
+history.push(value);
+
+localStorage.setItem("history",JSON.stringify(history));
+
+displayHistory();
+
+}
+function displayHistory(){
+
+let historyList = document.getElementById("history");
+
+historyList.innerHTML="";
+
+let history = JSON.parse(localStorage.getItem("history")) || [];
+
+history.forEach(item=>{
+
+let li=document.createElement("li");
+
+li.textContent=item;
+
+historyList.appendChild(li);
+
+});
+
+}
+
+displayHistory();
+function downloadHistory(){
+
+let history = JSON.parse(localStorage.getItem("history")) || [];
+
+let text = history.join("\n");
+
+let blob = new Blob([text],{type:"text/plain"});
+
+let link = document.createElement("a");
+
+link.href = URL.createObjectURL(blob);
+
+link.download = "calculator-history.txt";
+
+link.click();
 
 }

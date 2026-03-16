@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Smart Calculator </title>
+<title>Smart Calculator Pro</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,12 +13,29 @@
 
 <h2>Smart Calculator</h2>
 
-<input type="text" id="display" placeholder="0">
+<!-- Display -->
+<input type="text" id="display" placeholder="0" readonly>
 
-<!-- Scientific Mode Toggle -->
-<button class="sci-toggle" onclick="toggleScientific()">Scientific Mode</button>
+<!-- Top Controls -->
+<div class="top-controls">
 
+<button onclick="toggleTheme()">🌙</button>
+<button onclick="copyResult()">📋</button>
+<button onclick="downloadHistory()">⬇</button>
 
+</div>
+
+<!-- Memory Buttons -->
+<div class="memory">
+
+<button onclick="memoryClear()">MC</button>
+<button onclick="memoryRecall()">MR</button>
+<button onclick="memoryAdd()">M+</button>
+<button onclick="memorySubtract()">M-</button>
+
+</div>
+
+<!-- Main Calculator Buttons -->
 <div class="buttons">
 
 <button onclick="clearDisplay()">C</button>
@@ -45,8 +62,12 @@
 <button onclick="append('.')">.</button>
 <button class="equal" onclick="calculate()">=</button>
 
-
 </div>
+
+<!-- Scientific Mode Toggle -->
+<button class="sci-toggle" onclick="toggleScientific()">
+Scientific Mode
+</button>
 
 <!-- Scientific Buttons -->
 <div id="scientific" class="scientific">
@@ -61,22 +82,22 @@
 
 </div>
 
-<div class="extra">
-
-<button onclick="toggleTheme()">🌙</button>
-
-</div>
+<!-- History Section -->
+<div class="history-section">
 
 <h3>History</h3>
 
-<button class="clear-history" onclick="clearHistory()">Clear History</button>
+<button class="clear-history" onclick="clearHistory()">
+Clear History
+</button>
 
 <ul id="history"></ul>
 
 </div>
 
-<script src="script.js"></script>
+</div>
 
+<script src="script.js"></script>
 
 </body>
 </html>

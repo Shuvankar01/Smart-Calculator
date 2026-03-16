@@ -280,3 +280,27 @@ gap:8px;
 }
 
 }
+button.active{
+
+background:#ff9800;
+transform:scale(1.1);
+
+}
+.top-controls{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+}
+
+.top-controls button{
+width:30%;
+}
+.memory{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin-bottom:10px;
+}
+.history-section{
+margin-top:15px;
+}
