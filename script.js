@@ -267,3 +267,47 @@ link.download = "calculator-history.txt";
 link.click();
 
 }
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker.register("service-worker.js")
+
+.then(()=>console.log("Service Worker Registered"));
+
+}
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+
+/* Detect install availability */
+window.addEventListener("beforeinstallprompt", (e) => {
+
+e.preventDefault(); // stop automatic popup
+
+deferredPrompt = e;
+
+/* Show install button */
+installBtn.style.display = "block";
+
+});
+
+/* Button click → install */
+installBtn.addEventListener("click", async () => {
+
+if(deferredPrompt){
+
+deferredPrompt.prompt();
+
+const result = await deferredPrompt.userChoice;
+
+if(result.outcome === "accepted"){
+console.log("User installed app");
+}else{
+console.log("User cancelled install");
+}
+
+deferredPrompt = null;
+
+installBtn.style.display = "none";
+
+}
+
+});
