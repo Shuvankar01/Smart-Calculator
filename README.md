@@ -16,6 +16,10 @@ This project demonstrates strong **frontend development skills**, including UI d
 ✔ Dark / Light Theme Toggle
 ✔ Animated UI Buttons
 ✔ Responsive Design (Works on Mobile & Desktop)
+✔ History + Memory
+✔ 📲 Installable PWA App 🔥
+✔ Live Demo 🌐
+✔ Screenshot 📸
 
 ---
 
@@ -29,7 +33,7 @@ This project demonstrates strong **frontend development skills**, including UI d
 
 ## 📸 Project Screenshot
 
-![Calculator Screenshot](assets/screenshot.png)
+![Calculator Screenshot](assets/Screenshot.png)
 
 ---
 
@@ -44,6 +48,13 @@ git clone https://github.com/Shuvankar01/Smart-Calculator.git
 2. Open the project folder
 
 3. Run **index.html** in any browser
+4. ## 📲 Installable App (PWA)
+
+This project is built as a Progressive Web App (PWA), allowing users to install it directly on their device.
+
+👉 Simply click the **Install App icon** in the browser address bar to add it to your desktop or mobile.
+
+✨ Once installed, it works like a native application with offline support.
 
 ---
 
@@ -64,7 +75,6 @@ This project helped me understand:
 * Save calculation history using **LocalStorage**
 * Add **Voice Input Calculator**
 * Add **Advanced Scientific Functions**
-* Convert the calculator into a **Progressive Web App (PWA)**
 
 ---
 
