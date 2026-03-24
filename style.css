@@ -304,3 +304,6 @@ margin-bottom:10px;
 .history-section{
 margin-top:15px;
 }
+button:hover {
+    box-shadow: 0 0 10px #00ffcc;
+}
