@@ -16,10 +16,17 @@ This project demonstrates strong **frontend development skills**, including UI d
 ✔ Dark / Light Theme Toggle
 ✔ Animated UI Buttons
 ✔ Responsive Design (Works on Mobile & Desktop)
+<<<<<<< HEAD
 ✔ History + Memory
 ✔ 📲 Installable PWA App 🔥
 ✔ Live Demo 🌐
 ✔ Screenshot 📸
+=======
+🎤 Voice Calculator
+
+Perform calculations using voice commands like:
+"five plus three", "10 divided by 2", etc.
+>>>>>>> 90fbc32 (Adding voice response)
 
 ---
 
@@ -73,7 +80,6 @@ This project helped me understand:
 ## 📌 Future Improvements
 
 * Save calculation history using **LocalStorage**
-* Add **Voice Input Calculator**
 * Add **Advanced Scientific Functions**
 
 ---
