@@ -194,41 +194,94 @@ installBtn.addEventListener("click", async () => {
 
 /* ================= VOICE INPUT ================= */
 
+function aiProcess(input) {
+    input = input.toLowerCase().trim();
+
+    // Remove unnecessary words
+    input = input
+        .replace(/what is|calculate|please|can you|tell me|answer/g, "")
+        .trim();
+
+    // Number words → digits
+    const numbers = {
+        "zero": 0, "one": 1, "two": 2, "three": 3,
+        "four": 4, "five": 5, "six": 6,
+        "seven": 7, "eight": 8, "nine": 9, "ten": 10
+    };
+
+    input = input.split(" ").map(word => {
+        return numbers[word] !== undefined ? numbers[word] : word;
+    }).join(" ");
+
+    // 🔥 Handle natural sentences
+
+    // add 5 and 3 → 5 + 3
+    input = input.replace(/add (\d+) and (\d+)/, "$1 + $2");
+
+    // subtract 3 from 10 → 10 - 3
+    input = input.replace(/subtract (\d+) from (\d+)/, "$2 - $1");
+
+    // multiply 4 by 6 → 4 * 6
+    input = input.replace(/multiply (\d+) by (\d+)/, "$1 * $2");
+
+    // divide 10 by 2 → 10 / 2
+    input = input.replace(/divide (\d+) by (\d+)/, "$1 / $2");
+
+    // square of 5 → 5 * 5
+    input = input.replace(/square of (\d+)/, "$1 * $1");
+
+    // cube of 3 → 3 * 3 * 3
+    input = input.replace(/cube of (\d+)/, "$1 * $1 * $1");
+
+    // square root of 25 → Math.sqrt(25)
+    input = input.replace(/square root of (\d+)/, "Math.sqrt($1)");
+
+    // log of 10 → Math.log(10)
+    input = input.replace(/log of (\d+)/, "Math.log($1)");
+
+    // basic replacements (fallback)
+    input = input
+        .replace(/plus/g, "+")
+        .replace(/minus/g, "-")
+        .replace(/(times|into)/g, "*")
+        .replace(/over/g, "/");
+
+    return input;
+}
 function startVoice() {
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
     recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
     recognition.start();
 
     recognition.onresult = function (event) {
-        let speech = event.results[0][0].transcript.toLowerCase();
+        let speech = event.results[0][0].transcript;
 
-        const numbers = {
-            "zero": 0, "one": 1, "two": 2, "three": 3,
-            "four": 4, "five": 5, "six": 6,
-            "seven": 7, "eight": 8, "nine": 9, "ten": 10
-        };
+        console.log("User:", speech);
 
-        speech = speech.split(" ").map(word => {
-            return numbers[word] !== undefined ? numbers[word] : word;
-        }).join("");
+        let processed = aiProcess(speech);
 
-        speech = speech
-            .replace(/plus/g, "+")
-            .replace(/minus/g, "-")
-            .replace(/(into|multiply|times)/g, "*")
-            .replace(/(divide|dividedby|over)/g, "/");
+        console.log("Processed:", processed);
 
         try {
-            let result = eval(speech);
-            display.value = result;
-            addHistory(speech + " = " + result);
-        } catch {
-            alert("Speak like: 5 plus 3");
+            let result = eval(processed);
+
+            if (!isNaN(result)) {
+                display.value = result;
+                addHistory(processed + " = " + result);
+
+                speechSynthesis.speak(new SpeechSynthesisUtterance(result));
+            }
+        } catch (err) {
+            console.log("Error:", err);
+            display.value = "❌ Try again";
         }
     };
 
     recognition.onerror = function () {
-        alert("Voice recognition error");
+        display.value = "🎤 Voice error";
     };
 }
